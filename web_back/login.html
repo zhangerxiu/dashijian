@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>大事件-后台登录页</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="./js/jquery-1.12.4.min.js"></script>
+    <script src="./tu/地址.js"></script>
+    <script src="./tu/ajax封装.js"></script>
+</head>
+
+<body>
+    <div class="main_wrap">
+        <div class="header">
+            <a href="#" class="logo"><img src="images/logo.png" alt=""></a>
+            <div class="copyright">CopyRight © 2019 深圳百秀信息技术股份有限公司<br>All Rights Reserved</div>
+        </div>
+
+        <div class="login_form_con">
+            <div class="login_title"></div>
+            <form class="login_form">
+                <i class="iconfont icon-user"></i>
+                <i class="iconfont icon-key"></i>
+                <input type="text" class="input_txt" placeholder="邮箱/手机号">
+                <input type="password" class="input_pass" placeholder="密码">
+                <!-- <input type="submit" class="input_sub" value="登 录"> -->
+                <input type="button" class="input_sub" value="登 录">
+            </form>
+        </div>
+    </div>
+
+</body>
+<script>
+    var $inputtxt = $('.input_txt');
+    var $inputpass = $('.input_pass');
+    $('.input_sub').on('click', function () {
+        var username = $inputtxt.val().trim();
+        var password = $inputpass.val().trim();
+        if (username == '' || password == '') {
+            alert('你他娘的啥也没写')
+            return;
+        }
+        user.login({
+            data: {
+                user_name: username,
+                password: password,
+            },
+            success: function () {
+                location.href = './index.html';
+            },
+            fail: function () {
+                alert('你他娘的写错了');
+            }
+
+        });
+    });
+</script>
+
+</html>
