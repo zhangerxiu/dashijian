@@ -123,7 +123,13 @@
                     alert('亲~网络开小差了~~')
                 }
             })
-        })
+        });
+        user.loguser({
+            success: function (data) {
+                $('.user_info img,.user_center_link img').prop('src', data.user_pic);
+                $('.user_info span').text('欢迎 ' + data.nickname);
+            }
+        });
     </script>
 
 </body>
