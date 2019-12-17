@@ -88,14 +88,14 @@
                     <h4 class="modal-title">新增分类</h4>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="form">
                         <div class="form-group">
                             <label for="recipient-name" class="control-label">分类名称:</label>
                             <input type="text" class="form-control" id="name" name="name">
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="control-label">分类别名:</label>
-                            <input type="text" class="form-control" id="slug" id="slug">
+                            <input type="text" class="form-control" id="slug" name="slug">
                         </div>
                     </form>
                 </div>
@@ -122,27 +122,27 @@
         {{/each}};
     </script>
     <script>
-        $('#addModal').modal({
-            show: false,
-            backdrop: false
-        });
+        // $('#addModal').modal({
+        //     show: false,
+        //     backdrop: false
+        // });
 
-        $('#modal_shutoff').click(function () {
-            alert('shutoff');
-            $('#addModal').modal('hide');
-        });
+        // $('#model_shutoff').click(function () {
+        //     alert('shutoff');
+        //     $('#addModal').modal('hide');
+        // });
 
-        $('#modal_add').click(function () {
-            alert('add');
-            $('#addModal').modal('hide');
-        });
+        // $('#model_add').click(function () {
+        //     // alert('add');
+        //     $('#addModal').modal('hide');
+        // });
 
-        $('.category_table').delegate('a', 'click', function () {
-            if ($(this).hasClass('btn-info')) {
-                $('#addModal .modal-title').html('修改分类名称');
-                $('#addModal').modal('show');
-            }
-        })
+        // $('.category_table').delegate('a', 'click', function () {
+        //     if ($(this).hasClass('btn-info')) {
+        //         $('#addModal .modal-title').html('修改分类名称');
+        //         $('#addModal').modal('show');
+        //     }
+        // })
 
         // $.ajax({
         //     url: 'http://localhost:8000/admin/category_search',
@@ -161,9 +161,9 @@
             }
         });
         $('#modal_add').on('click', function () {
-            var a = $('#name').val().trim();
-            var b = $('#slug').val().trim();
-            if (a == '' || b == '') {
+            var nameVal = $('#name').val().trim();
+            var slugVal = $('#slug').val().trim();
+            if (nameVal == '' || slugVal == '') {
                 alert('亲!请填写完整哦~~爱你么么哒~~');
                 return;
             };
@@ -172,14 +172,47 @@
                 url: 'http://localhost:8000/admin/category_add',
                 data: $('form').serialize(),
                 success: function (res) {
+                    console.log(res);
+
                     if (res.code == 200) {
                         location.reload();
+                    } else {
+                        // 如果失败，可能是因为名称或别名重复，进行提示即可
+                        // alert('名称或别名重复，请重新输入');
+                        // $('form')[0].reset();
                     }
                 }
             })
-        })
+        });
 
-        张少扬真的帅
+
+    //     $('#modal_add').on('click', function () {
+    //   // 2 进行内容检测
+    //   var nameVal = $('#name').val().trim();
+    //   var slugVal = $('#slug').val().trim();
+    //   if (nameVal === '' || slugVal === '') {
+    //     alert('请完整填写内容!~');
+    //     return;
+    //   }
+    //   // 3 发送请求
+    //   $.ajax({
+    //     type: 'POST',
+    //     url: 'http://localhost:8000/admin/category_add',
+    //     data: $('form').serialize(), // 可以将表单数据处理为 名=值&名...
+    //     success: function (res) {
+    //       // 3.1 检测新增是否成功
+    //       if (res.code === 200) {
+    //         // 刷新页面
+    //         location.reload();
+    //       } else {
+    //         // 如果失败，可能是因为名称或别名重复，进行提示即可
+    //         alert('名称或别名重复，请重新输入');
+    //         $('form')[0].reset();
+    //       }
+    //     }
+    //   });
+    // });
+        // 张少扬真的帅
     </script>
 
 </body>
