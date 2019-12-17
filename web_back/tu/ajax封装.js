@@ -1,17 +1,6 @@
 var user = {
     login: function (options) {
-        // data: {
-        //     user_name: username,
-        //     password: password,
-        // },
-        // success: function () {
-        //     location.href = './index.html';
-        // },
-        // fail: function () {
-        //     // alert('你他娘的写错了');
-        //     $myModal.modal('show').find('.modal-body').text('你他娘的写错了');
 
-        // }
         $.ajax({
             type: 'post',
             url: LOGIN,
@@ -26,7 +15,9 @@ var user = {
                     options.fail();
                 }
             }
-        });
+
+
+        })
 
     },
     logout: function (options) {

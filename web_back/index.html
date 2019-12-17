@@ -62,7 +62,7 @@
     </div>
 
 
-    <iframe src="" frameborder="0"></iframe>
+
     <script>
         var $level01 = $('.level01');
         var $subli = $('.level02 li')
@@ -126,8 +126,9 @@
         });
         user.loguser({
             success: function (data) {
+                // 获取左侧和顶部右侧的img，进行头像设置
                 $('.user_info img,.user_center_link img').prop('src', data.user_pic);
-                $('.user_info span').text('欢迎 ' + data.nickname);
+                $('.user_info span').text('欢迎  ' + data.nickname);
             }
         });
     </script>
